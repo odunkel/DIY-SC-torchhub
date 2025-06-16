@@ -124,11 +124,10 @@ class AggregationNetwork(nn.Module):
     
 
 def model(pretrained: bool = False):
-    # FIXME Adapt the checkpoints...
     device = 'cpu'
     aggre_net = AggregationNetwork(feature_dims=[768,], projection_dim=768, device=device, feat_map_dropout=0.2)
     if pretrained:
-        ckpt_dir = 'ckpts/dino_spair_0300.pth'
+        ckpt_dir = 'ckpts/0300_dino_spair/best.pth'
         pretrained_dict = torch.load(ckpt_dir, map_location=device)
         aggre_net.load_pretrained_weights(pretrained_dict)
     return aggre_net
