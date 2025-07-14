@@ -122,22 +122,39 @@ class AggregationNetwork(nn.Module):
             if self.skip_connection:
                 output_feature = output_feature + output_feature_after
         return output_feature
-    
-
-def agg_dino(pretrained: bool = False, device = 'cpu'):
-    agg_net = AggregationNetwork(feature_dims=[768,], projection_dim=768, device=device, feat_map_dropout=0.2)
-    if pretrained:
-        f_path = os.path.dirname(os.path.abspath(__file__))
-        ckpt_dir = f'{f_path}/../ckpts/0300_dino_spair/best.pth'
-        pretrained_dict = torch.load(ckpt_dir, map_location=device)
-        agg_net.load_pretrained_weights(pretrained_dict)
-    return agg_net
 
 def agg_sd_dino(pretrained: bool = False, device = 'cpu'):
     agg_net = AggregationNetwork(feature_dims=[640,1280,1280,768], projection_dim=768, device=device, feat_map_dropout=0.2)
     if pretrained:
         f_path = os.path.dirname(os.path.abspath(__file__))
         ckpt_dir = f'{f_path}/../ckpts/0280_spair/best.pth'
+        pretrained_dict = torch.load(ckpt_dir, map_location=device)
+        agg_net.load_pretrained_weights(pretrained_dict)
+    return agg_net
+
+def agg_sd_dino_in3d_spair(pretrained: bool = False, device = 'cpu'):
+    agg_net = AggregationNetwork(feature_dims=[640,1280,1280,768], projection_dim=768, device=device, feat_map_dropout=0.2)
+    if pretrained:
+        f_path = os.path.dirname(os.path.abspath(__file__))
+        ckpt_dir = f'{f_path}/../ckpts/0294_ind3d_spair/best.pth'
+        pretrained_dict = torch.load(ckpt_dir, map_location=device)
+        agg_net.load_pretrained_weights(pretrained_dict)
+    return agg_net
+
+def agg_sd_dino_in3d(pretrained: bool = False, device = 'cpu'):
+    agg_net = AggregationNetwork(feature_dims=[640,1280,1280,768], projection_dim=768, device=device, feat_map_dropout=0.2)
+    if pretrained:
+        f_path = os.path.dirname(os.path.abspath(__file__))
+        ckpt_dir = f'{f_path}/../ckpts/0709_in3d/best.pth'
+        pretrained_dict = torch.load(ckpt_dir, map_location=device)
+        agg_net.load_pretrained_weights(pretrained_dict)
+    return agg_net
+
+def agg_dino(pretrained: bool = False, device = 'cpu'):
+    agg_net = AggregationNetwork(feature_dims=[768,], projection_dim=768, device=device, feat_map_dropout=0.2)
+    if pretrained:
+        f_path = os.path.dirname(os.path.abspath(__file__))
+        ckpt_dir = f'{f_path}/../ckpts/0300_dino_spair/best.pth'
         pretrained_dict = torch.load(ckpt_dir, map_location=device)
         agg_net.load_pretrained_weights(pretrained_dict)
     return agg_net
@@ -156,6 +173,24 @@ def agg_dino_128(pretrained: bool = False, device = 'cpu'):
     if pretrained:
         f_path = os.path.dirname(os.path.abspath(__file__))
         ckpt_dir = f'{f_path}/../ckpts/0368_dino_spair_fdim_128/best.pth'
+        pretrained_dict = torch.load(ckpt_dir, map_location=device)
+        agg_net.load_pretrained_weights(pretrained_dict)
+    return agg_net
+
+def agg_dino_in3d_spair(pretrained: bool = False, device = 'cpu'):
+    agg_net = AggregationNetwork(feature_dims=[768,], projection_dim=768, device=device, feat_map_dropout=0.2)
+    if pretrained:
+        f_path = os.path.dirname(os.path.abspath(__file__))
+        ckpt_dir = f'{f_path}/../ckpts/0301_dino_in3d_spair/best.pth'
+        pretrained_dict = torch.load(ckpt_dir, map_location=device)
+        agg_net.load_pretrained_weights(pretrained_dict)
+    return agg_net
+
+def agg_dino_in3d(pretrained: bool = False, device = 'cpu'):
+    agg_net = AggregationNetwork(feature_dims=[768,], projection_dim=768, device=device, feat_map_dropout=0.2)
+    if pretrained:
+        f_path = os.path.dirname(os.path.abspath(__file__))
+        ckpt_dir = f'{f_path}/../ckpts/0712_dino_in3d/best.pth'
         pretrained_dict = torch.load(ckpt_dir, map_location=device)
         agg_net.load_pretrained_weights(pretrained_dict)
     return agg_net
